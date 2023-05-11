@@ -1,0 +1,15 @@
+{
+  "name": "daisyui",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "denoland.vscode-deno",
+        "astro-build.astro-vscode",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
