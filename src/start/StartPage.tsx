@@ -1,3 +1,7 @@
+import { ContactPerson } from "./ContactPerson"
+
 export const StartPage = () => {
-    return <h1>Startpage</h1>
+    return <>
+        <ContactPerson />
+    </>
 }
