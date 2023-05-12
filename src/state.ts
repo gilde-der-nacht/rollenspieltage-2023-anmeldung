@@ -7,7 +7,13 @@ export type Page =
     { status: "active" | "inactive" }
     | { status: "disabled", reason: string })
 
-type State = { pages: Page[] }
+export type UserInput = {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+type State = { pages: Page[], userInput: UserInput }
 
 export const store = () => createStore<State>({
   pages: [
@@ -15,5 +21,10 @@ export const store = () => createStore<State>({
     { label: "Spielen", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
     { label: "Leiten", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
     { label: "Zusammenfassung", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
-  ]
+  ],
+  userInput: {
+    name: "",
+    email: "",
+    phone: ""
+  }
 })
