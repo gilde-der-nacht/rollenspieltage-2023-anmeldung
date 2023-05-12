@@ -7,25 +7,28 @@ type Props = {
 
 
 export const Nav = (props: Props) => {
-  return <div class="sticky top-0 py-4 xNavWrapper">
-    <div class="navbar bg-neutral text-primary-content">
-      <div class="btn-group">
+  return <div class="py-4 xNavWrapper">
+    <div class="flex bg-neutral text-primary-content p-3 place-content-center">
+      <ul class="steps steps-vertical lg:steps-horizontal">
         <For each={props.pages}>
           {(page) => (
             <Switch fallback={
-              <button class="btn">{page.label}</button>
+              <li class="step">{page.label}</li>
             }>
               <Match when={page.status === "active"}>
-                <button class="btn btn-active">{page.label}</button>
+                <li class="step step-primary" data-content={page.status === "active" && page.done ? '✓' : '?'}>{page.label}</li>
               </Match>
               <Match when={page.status === "disabled"}>
-                <div class="tooltip tooltip-info" data-tip={(page as any).reason}>
-                  <button class="btn btn-disabled">{page.label}</button>
-                </div>
+                <li class="step" data-content="✕">
+                  <span class="text-slate-600">
+                    {page.label}
+                  </span>
+                </li>
               </Match>
             </Switch>
           )}
         </For >
-      </div >
-    </div ></div>
+      </ul>
+    </div>
+  </div>
 }
