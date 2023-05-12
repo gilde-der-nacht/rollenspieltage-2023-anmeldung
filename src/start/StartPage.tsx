@@ -1,7 +1,9 @@
-import { ContactPerson } from "./ContactPerson"
+import { ContactPerson, ContactProps } from "./ContactPerson"
 
-export const StartPage = () => {
+type Props = ContactProps
+
+export const StartPage = (props: Props) => {
     return <>
-        <ContactPerson />
+        <ContactPerson name={props.name} mail={props.mail} phone={props.phone} />
     </>
 }

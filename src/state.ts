@@ -10,7 +10,7 @@ export type Page =
 
 export type UserInput = {
   name: string;
-  email: string;
+  mail: string;
   phone: string;
 }
 
@@ -25,7 +25,7 @@ export const store = () => createStore<State>({
   ],
   userInput: {
     name: "",
-    email: "",
+    mail: "",
     phone: ""
   }
 })
