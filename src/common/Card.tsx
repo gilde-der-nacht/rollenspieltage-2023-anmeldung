@@ -9,7 +9,7 @@ export const Card = (props: Props) => {
             <p>{props.content}</p>
             {props.remove !== undefined && (
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn btn-error" onClick={props.remove}>Entfernen</button>
                 </div>
             )}
         </div>
