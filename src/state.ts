@@ -12,9 +12,11 @@ export type UserInput = {
   name: string;
   mail: string;
   phone: string;
+  friend01: string;
+  friend02: string;
 }
 
-type State = { pages: Page[], userInput: UserInput }
+export type State = { pages: Page[], userInput: UserInput }
 
 export const store = () => createStore<State>({
   pages: [
@@ -26,6 +28,9 @@ export const store = () => createStore<State>({
   userInput: {
     name: "",
     mail: "",
-    phone: ""
+    phone: "",
+    friend01: "",
+    friend02: "",
   }
 })
+

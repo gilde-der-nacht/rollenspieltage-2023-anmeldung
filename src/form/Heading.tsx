@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const Heading = (props: Props) => {
-    return <div>
+    return <div class="grid gap-2">
         <h3 class="text-2xl font-bold">{props.title}</h3>
         {props.description !== undefined && (
             <p>{props.description}</p>

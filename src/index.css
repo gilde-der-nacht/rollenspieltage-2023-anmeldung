@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .xWrapper {
-    width: min(100% - 2rem, 80ch);
+    width: calc(100% - 2rem);
     margin-inline: auto;
     padding-block: 1rem;
 }

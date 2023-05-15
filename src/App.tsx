@@ -4,24 +4,11 @@ import { store } from "./state";
 import { StartPage } from "./start/StartPage";
 import { Collapse } from "./common/Collapse";
 import { StateOutput } from "./StateOutput";
-import { Container } from "./form/Values"
+import { createContainers, createEvents } from "./form/Values"
 
 const [state, setState] = store();
-
-const name: Container<string> = {
-  val: state.userInput.name,
-  setVal: (n) => setState('userInput', 'name', (_) => n)
-}
-
-const mail: Container<string> = {
-  val: state.userInput.mail,
-  setVal: (n) => setState('userInput', 'mail', (_) => n)
-}
-
-const phone: Container<string> = {
-  val: state.userInput.phone,
-  setVal: (n) => setState('userInput', 'phone', (_) => n)
-}
+const { name, mail, phone, friend01, friend02 } = createContainers(state, setState);
+const triggerEvent = createEvents(setState);
 
 const App = () => {
   return (
@@ -41,7 +28,7 @@ const App = () => {
         <Nav pages={state.pages} />
         <Switch>
           <Match when={state.pages.find(p => p.label === "Start" && p.status === "active")}>
-            <StartPage name={name} mail={mail} phone={phone} />
+            <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
           </Match>
         </Switch>
       </div>
