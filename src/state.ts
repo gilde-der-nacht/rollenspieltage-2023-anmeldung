@@ -16,7 +16,11 @@ export type UserInput = {
   friend02: string;
 }
 
-export type State = { pages: Page[], userInput: UserInput }
+export type State = {
+  pages: Page[],
+  userInput: UserInput,
+  initialized: boolean
+}
 
 export const store = () => createStore<State>({
   pages: [
@@ -31,6 +35,7 @@ export const store = () => createStore<State>({
     phone: "",
     friend01: "",
     friend02: "",
-  }
+  },
+  initialized: false,
 })
 

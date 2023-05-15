@@ -17,6 +17,19 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
     return { name, mail, phone, friend01, friend02 }
 }
 
-export const createEvents = (setState: SetStoreFunction<State>) => {
-    return () => { }
+export type EventKey = "StartRegistration"
+export type TriggerEvent = (key: EventKey) => void
+
+export const createEvents = (setState: SetStoreFunction<State>): TriggerEvent => {
+    return (key: EventKey) => {
+        switch (key) {
+            case "StartRegistration":
+                setState("initialized", true)
+                break;
+
+            default:
+                console.error("Undefinierter Event")
+                break;
+        }
+    }
 }

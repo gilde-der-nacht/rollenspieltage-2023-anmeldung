@@ -5,6 +5,7 @@ import { StartPage } from "./start/StartPage";
 import { Collapse } from "./common/Collapse";
 import { StateOutput } from "./StateOutput";
 import { createContainers, createEvents } from "./form/Values"
+import { Initial } from "./start/Initial";
 
 const [state, setState] = store();
 const { name, mail, phone, friend01, friend02 } = createContainers(state, setState);
@@ -25,10 +26,16 @@ const App = () => {
         </div>
       </div>
       <div class="xWrapper">
-        <Nav pages={state.pages} />
-        <Switch>
-          <Match when={state.pages.find(p => p.label === "Start" && p.status === "active")}>
-            <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
+        <Switch fallback={
+          <Initial name={name} mail={mail} phone={phone} triggerEvent={triggerEvent} />
+        }>
+          <Match when={state.initialized}>
+            <Nav pages={state.pages} />
+            <Switch>
+              <Match when={state.pages.find(p => p.label === "Start" && p.status === "active")}>
+                <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
+              </Match>
+            </Switch>
           </Match>
         </Switch>
       </div>
