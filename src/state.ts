@@ -36,6 +36,6 @@ export const store = () => createStore<State>({
     friend01: "",
     friend02: "",
   },
-  initialized: false,
+  initialized: true,
 })
 

@@ -14,7 +14,8 @@ type Props = {
 }
 
 export const Initial = (props: Props): JSXElement => {
-    const startRegistration = () => {
+    const startRegistration = (e: Event) => {
+        e.preventDefault();
         if (props.name.val().trim().length > 0 && props.mail.val().trim().length > 0) {
             props.triggerEvent("StartRegistration");
         }

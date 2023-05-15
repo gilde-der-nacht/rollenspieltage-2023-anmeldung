@@ -1,13 +1,13 @@
 import { Container } from "./Values";
 
-type Props = {
+export type InputProps = {
     label: string;
     hint?: string;
     required?: boolean;
     value: Container<string>;
 }
 
-export const TextInput = (props: Props) => {
+export const TextInput = (props: InputProps) => {
     return <div class="form-control">
         <label class="label">
             <strong>
