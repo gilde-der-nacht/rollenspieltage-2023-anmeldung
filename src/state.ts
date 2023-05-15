@@ -6,7 +6,8 @@ export type Page =
   { label: PageLabel } & (
     ({ status: "active" | "inactive" }
       & { done: boolean })
-    | { status: "disabled", reason: string })
+  )
+
 
 export type UserInput = {
   name: string;
@@ -25,10 +26,10 @@ export type State = {
 export const store = () => createStore<State>({
   pages: [
     { label: "Start", status: "active", done: false },
-    { label: "Zeit", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
-    { label: "Spielen", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
-    { label: "Leiten", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
-    { label: "Zusammenfassung", status: "disabled", reason: "Bitte fülle zuerst den Abschnitt 'Start' aus." },
+    { label: "Zeit", status: "inactive", done: false },
+    { label: "Spielen", status: "inactive", done: false },
+    { label: "Leiten", status: "inactive", done: false },
+    { label: "Zusammenfassung", status: "inactive", done: false },
   ],
   userInput: {
     name: "",

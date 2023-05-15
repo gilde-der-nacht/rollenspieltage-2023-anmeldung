@@ -35,7 +35,7 @@ export const PeopleList = (props: PeopleListProps) => {
 
     return <div class="grid gap-4">
         <Heading title="Anmeldung als Gruppe" description="Hier hast du die Möglichkeit bis zu zwei weitere Personen anzumelden, die dasselbe Programm erhalten werden wie du." />
-        <Card content={"Kontaktperson: " + props.name.val()} />
+        <Card content={"1: " + props.name.val() + " (Kontaktperson)"} />
         <Show when={props.friend01.val().trim().length > 0}>
             <Card content={"2: " + props.friend01.val()} remove={() => removeFriend("1")} />
         </Show>
