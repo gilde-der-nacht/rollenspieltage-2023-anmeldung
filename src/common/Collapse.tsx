@@ -7,7 +7,7 @@ type Props = {
 
 export const Collapse = (props: Props) => {
     return <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
-        <input type="checkbox" checked={true} />
+        <input type="checkbox" checked={false} />
         <div class="collapse-title text-xl font-medium">
             {props.title}
         </div>
