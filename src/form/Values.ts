@@ -1,5 +1,5 @@
 import { SetStoreFunction, Store } from "solid-js/store";
-import { State, UserInput } from "../state";
+import { PageLabel, State, UserInput } from "../state";
 
 export type Container<T> = {
     val: () => T;
@@ -17,15 +17,18 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
     return { name, mail, phone, friend01, friend02 }
 }
 
-export type EventKey = "StartRegistration"
-export type TriggerEvent = (key: EventKey) => void
+export type EventPayload = ["StartRegistration"] | ["ChangeSite", PageLabel]
+export type TriggerEvent = (key: EventPayload) => void
 
 export const createEvents = (setState: SetStoreFunction<State>): TriggerEvent => {
-    return (key: EventKey) => {
-        switch (key) {
+    return (key: EventPayload) => {
+        switch (key[0]) {
             case "StartRegistration":
                 setState("initialized", true)
                 break;
+
+            case "ChangeSite":
+                setState('pages', (prev) => prev.map(p => ({ ...p, status: p.label === key[1] ? "active" : "inactive" })));
 
             default:
                 console.error("Undefinierter Event")

@@ -2,7 +2,6 @@ import { Show } from "solid-js";
 import { Card } from "../common/Card";
 import { Heading } from "../form/Heading"
 import { Container } from "../form/Values";
-import { Button } from "../common/Button";
 import { Alert } from "../common/Alert";
 import { InputAndButton } from "../form/InputAndButton";
 

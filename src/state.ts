@@ -1,13 +1,12 @@
 import { createStore } from "solid-js/store";
 
 export const pages = ["Start", "Zeit", "Spielen", "Leiten", "Zusammenfassung"] as const;
-type PageLabel = typeof pages[number];
+export type PageLabel = typeof pages[number];
 export type Page =
   { label: PageLabel } & (
     ({ status: "active" | "inactive" }
       & { done: boolean })
-  )
-
+  );
 
 export type UserInput = {
   name: string;

@@ -6,6 +6,7 @@ import { Collapse } from "./common/Collapse";
 import { StateOutput } from "./StateOutput";
 import { createContainers, createEvents } from "./form/Values"
 import { Initial } from "./start/Initial";
+import { Footer } from "./Footer";
 
 const [state, setState] = store();
 const { name, mail, phone, friend01, friend02 } = createContainers(state, setState);
@@ -36,6 +37,7 @@ const App = () => {
                 <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
               </Match>
             </Switch>
+            <Footer pages={state.pages} triggerEvent={triggerEvent} />
           </Match>
         </Switch>
       </div>

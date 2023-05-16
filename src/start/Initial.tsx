@@ -1,8 +1,6 @@
 import { JSXElement } from "solid-js";
-import { Heading } from "../form/Heading";
 import { TextInput } from "../form/TextInput";
 import { MailInput } from "../form/MailInput";
-import { Alert } from "../common/Alert";
 import { Container, TriggerEvent } from "../form/Values";
 import { Button } from "../common/Button";
 
@@ -17,7 +15,7 @@ export const Initial = (props: Props): JSXElement => {
     const startRegistration = (e: Event) => {
         e.preventDefault();
         if (props.name.val().trim().length > 0 && props.mail.val().trim().length > 0) {
-            props.triggerEvent("StartRegistration");
+            props.triggerEvent(["StartRegistration"]);
         }
     }
     return <div class="hero min-h-screen bg-base-200">
