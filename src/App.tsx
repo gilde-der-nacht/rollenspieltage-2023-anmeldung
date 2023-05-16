@@ -31,13 +31,13 @@ const App = () => {
           <Initial name={name} mail={mail} phone={phone} triggerEvent={triggerEvent} />
         }>
           <Match when={state.initialized}>
-            <Nav pages={state.pages} triggerEvent={triggerEvent} />
+            <Nav pages={state.pages} triggerEvent={triggerEvent} activePage={state.currentPage} userInput={state.userInput} />
             <Switch>
-              <Match when={state.pages.find(p => p.label === "Start" && p.status === "active")}>
+              <Match when={state.currentPage === "Start"}>
                 <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
               </Match>
             </Switch>
-            <Footer pages={state.pages} triggerEvent={triggerEvent} />
+            <Footer pages={state.pages} triggerEvent={triggerEvent} activePage={state.currentPage} />
           </Match>
         </Switch>
       </div>

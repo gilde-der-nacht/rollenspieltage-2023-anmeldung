@@ -1,10 +1,12 @@
 import { For, Match, Switch } from "solid-js"
-import { Page } from "./state"
+import { Page, PageLabel, UserInput } from "./state"
 import { TriggerEvent } from "./form/Values"
 
 type Props = {
-  pages: readonly Page[]
+  pages: readonly Page[];
+  activePage: PageLabel;
   triggerEvent: TriggerEvent;
+  userInput: UserInput;
 }
 
 
@@ -17,10 +19,10 @@ export const Nav = (props: Props) => {
             <Switch fallback={
               <li class="step cursor-pointer" data-content="?" onClick={() => props.triggerEvent(["ChangeSite", page.label])}>{page.label}</li>
             }>
-              <Match when={page.status === "active"}>
-                <li class="step step-primary" data-content={page.status === "active" && page.done ? '✓' : '●'}>{page.label}</li>
+              <Match when={page.label === props.activePage}>
+                <li class="step step-primary" data-content={page.label === props.activePage && page.done(props.userInput) ? '✓' : '●'}>{page.label}</li>
               </Match>
-              <Match when={page.done}>
+              <Match when={page.done(props.userInput)}>
                 <li class="step step-info cursor-pointer" data-content="✓" onClick={() => props.triggerEvent(["ChangeSite", page.label])}>{page.label}</li>
               </Match>
             </Switch>

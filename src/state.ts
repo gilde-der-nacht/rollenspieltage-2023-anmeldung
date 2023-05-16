@@ -1,12 +1,12 @@
 import { createStore } from "solid-js/store";
+import { startIsDone } from "./start/StartPage";
 
 export const pages = ["Start", "Zeit", "Spielen", "Leiten", "Zusammenfassung"] as const;
 export type PageLabel = typeof pages[number];
-export type Page =
-  { label: PageLabel } & (
-    ({ status: "active" | "inactive" }
-      & { done: boolean })
-  );
+export type Page = {
+  label: PageLabel;
+  done: (userInput: UserInput) => boolean;
+}
 
 export type UserInput = {
   name: string;
@@ -17,18 +17,19 @@ export type UserInput = {
 }
 
 export type State = {
-  pages: Page[],
-  userInput: UserInput,
-  initialized: boolean
+  pages: Page[];
+  userInput: UserInput;
+  initialized: boolean;
+  currentPage: PageLabel;
 }
 
 export const store = () => createStore<State>({
   pages: [
-    { label: "Start", status: "active", done: false },
-    { label: "Zeit", status: "inactive", done: false },
-    { label: "Spielen", status: "inactive", done: false },
-    { label: "Leiten", status: "inactive", done: false },
-    { label: "Zusammenfassung", status: "inactive", done: false },
+    { label: "Start", done: startIsDone },
+    { label: "Zeit", done: () => false },
+    { label: "Spielen", done: () => false },
+    { label: "Leiten", done: () => false },
+    { label: "Zusammenfassung", done: () => false },
   ],
   userInput: {
     name: "",
@@ -38,5 +39,6 @@ export const store = () => createStore<State>({
     friend02: "",
   },
   initialized: true,
+  currentPage: "Start",
 })
 

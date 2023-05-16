@@ -28,7 +28,7 @@ export const createEvents = (setState: SetStoreFunction<State>): TriggerEvent =>
                 break;
 
             case "ChangeSite":
-                setState('pages', (prev) => prev.map(p => ({ ...p, status: p.label === key[1] ? "active" : "inactive" })));
+                setState("currentPage", key[1]);
                 break;
 
             default:

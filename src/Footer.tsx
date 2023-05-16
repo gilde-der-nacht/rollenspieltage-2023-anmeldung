@@ -5,12 +5,13 @@ import { Page, PageLabel, pages } from "./state"
 
 type Props = {
     pages: readonly Page[];
+    activePage: PageLabel;
     triggerEvent: TriggerEvent;
 }
 
 export const Footer = (props: Props) => {
     const currPage = (): number => {
-        return props.pages.findIndex(p => p.status === "active");
+        return props.pages.findIndex(p => p.label === props.activePage);
     }
 
     const prevPage = (): PageLabel => {
