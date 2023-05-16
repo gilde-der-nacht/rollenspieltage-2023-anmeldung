@@ -36,7 +36,6 @@ export const Footer = (props: Props) => {
                     </Button>
                 </Show>
             </div>
-            <div class="divider lg:divider-horizontal"></div>
             <div class="grid flex-grow h-16 place-items-end items-center">
                 <Show when={currPage() < props.pages.length - 1}>
                     <Button onClick={() => props.triggerEvent(["ChangeSite", nextPage()])}>

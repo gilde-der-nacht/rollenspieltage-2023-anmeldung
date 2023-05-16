@@ -31,7 +31,7 @@ const App = () => {
           <Initial name={name} mail={mail} phone={phone} triggerEvent={triggerEvent} />
         }>
           <Match when={state.initialized}>
-            <Nav pages={state.pages} />
+            <Nav pages={state.pages} triggerEvent={triggerEvent} />
             <Switch>
               <Match when={state.pages.find(p => p.label === "Start" && p.status === "active")}>
                 <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />

@@ -29,9 +29,10 @@ export const createEvents = (setState: SetStoreFunction<State>): TriggerEvent =>
 
             case "ChangeSite":
                 setState('pages', (prev) => prev.map(p => ({ ...p, status: p.label === key[1] ? "active" : "inactive" })));
+                break;
 
             default:
-                console.error("Undefinierter Event")
+                console.error("Undefinierter Event", key)
                 break;
         }
     }
