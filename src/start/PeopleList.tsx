@@ -49,7 +49,7 @@ export const PeopleList = (props: PeopleListProps) => {
                     <span>
                         2: <strong>{props.containers.f1.name.val()}</strong>
                     </span>
-                    <Availability label={false} saturday={props.containers.f1.saturday} sunday={props.containers.f2.sunday} />
+                    <Availability label={false} saturday={props.containers.f1.saturday} sunday={props.containers.f1.sunday} />
                     <AgeGroupSwitch ageGroup={props.containers.f1.age} id="pl1" />
                 </div>
             </Card>

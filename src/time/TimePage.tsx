@@ -12,14 +12,14 @@ export const TimePage = (props: Props) => {
     return <div>
         <Heading title="Zeitplan" />
         <TwoColumns left={
-            <div>
-                <h4 class="text-xl font-bold my-3">Samstag, 26. August</h4>
+            <div class="grid gap-5">
+                <h4 class="text-xl font-bold mt-3">Samstag, 26. August</h4>
                 <DayAvailability containers={props.containers} day="Samstag" />
                 <DayCalendar day="Samstag" />
             </div>
         } right={
-            <div>
-                <h4 class="text-xl font-bold my-3">Sonntag, 27. August</h4>
+            <div class="grid gap-5">
+                <h4 class="text-xl font-bold mt-3">Sonntag, 27. August</h4>
                 <DayAvailability containers={props.containers} day="Sonntag" />
                 <DayCalendar day="Sonntag" />
             </div>
