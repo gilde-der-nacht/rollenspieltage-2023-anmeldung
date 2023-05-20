@@ -1,8 +1,10 @@
 import { For } from "solid-js";
-import { Day } from "../state";
+import { Day, TimeWindow } from "../state";
+import { ComplexContainer } from "../form/Values";
 
 type Props = {
     day: Day;
+    time: ComplexContainer<TimeWindow>;
 }
 
 export const program = {
@@ -30,10 +32,16 @@ const prettyfy = (t: string | undefined): string => {
 
 const isEating = (t: string | undefined): boolean => t === "Mittagessen" || t === "Nachtessen";
 
+const isVisiting = (h: number, day: Day, timeWindow: ComplexContainer<TimeWindow>): boolean => {
+    const { start, end } = timeWindow[day].val();
+    return Number.parseInt(start) <= h && Number.parseInt(end) > h;
+}
+
 export const DayCalendar = (props: Props) => {
     const headerFooter = () => (
         <tr>
             <th>Startzeit</th>
+            <th></th>
             <th>Programm</th>
             <th>Bemerkung</th>
         </tr>);
@@ -57,6 +65,11 @@ export const DayCalendar = (props: Props) => {
                             (h) => (
                                 <tr class={isEating(dayProgram()[h]) ? "active" : "hover"}>
                                     <th>{h} Uhr</th>
+                                    <td>{isVisiting(h, props.day, props.time) ? (
+                                        <div class="indicator pb-3">
+                                            <span class="indicator-item indicator-middle indicator-center badge badge-success rounded-full badge-xs"></span>
+                                        </div>
+                                    ) : ""}</td>
                                     <td>{prettyfy(dayProgram()[h])}</td>
                                     <td>Flohmarkt offen</td>
                                 </tr>

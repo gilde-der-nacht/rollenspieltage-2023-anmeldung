@@ -37,10 +37,16 @@ export const StartEndChooser = (props: Props) => {
         })
     }))
 
-    return <div class="flex gap-3 flex-wrap items-center">
-        <Dropdown label={day.val().start} items={startItem()} />
-        bis
-        <Dropdown label={day.val().end} items={endItem()} />
+    return <div>
+        <label class="label">
+            <strong>
+                <span class="label-text">Wann planst du (plant ihr) am {props.day} an- und abzureisen?</span>
+            </strong>
+        </label>
+        <div class="flex gap-3 flex-wrap items-center">
+            <Dropdown label={day.val().start} items={startItem()} />
+            bis
+            <Dropdown label={day.val().end} items={endItem()} />
+        </div>
     </div>
-
 }

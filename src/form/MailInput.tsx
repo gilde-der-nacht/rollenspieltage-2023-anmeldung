@@ -12,7 +12,6 @@ export const MailInput = (props: Props) => {
         <label class="label">
             <strong>
                 <span class="label-text">{props.label}</span>
-                {/* <span class="label-text-alt">Top Right label</span> */}
             </strong>
         </label>
         <input type="mail" placeholder="" class="input input-bordered" required={props.required} value={props.value.val()} onInput={(e) => props.value.setVal((e.target as HTMLInputElement).value)} />
@@ -20,7 +19,6 @@ export const MailInput = (props: Props) => {
             !isEmptyString(props.hint) && (
                 <label class="label">
                     <span class="label-text-alt">{props.hint}</span>
-                    {/* <span class="label-text-alt">Bottom Right label</span> */}
                 </label>
             )
         }
