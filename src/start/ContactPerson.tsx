@@ -4,6 +4,7 @@ import { MailInput } from "../form/MailInput"
 import { TextInput } from "../form/TextInput"
 import { ComplexContainer } from "../form/Values"
 import { ContactUser } from "../state"
+import { Availability } from "./Availability"
 
 export type ContactProps = {
     contact: ComplexContainer<ContactUser>;
@@ -16,5 +17,6 @@ export const ContactPerson = (props: ContactProps) => {
         <MailInput label="E-Mail-Adresse *" required={true} hint="Pflichtfeld" value={props.contact.mail} />
         <Alert kind="info" text="Per Telefon können wir dich am Event spontan erreichen, sollte z.B. eine Spielrunde ausfallen." />
         <TextInput label="Telefonnummer" hint="Optional" value={props.contact.phone} />
+        <Availability saturday={props.contact.saturday} sunday={props.contact.sunday} />
     </div>
 }

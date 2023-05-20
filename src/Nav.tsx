@@ -23,7 +23,7 @@ export const Nav = (props: Props) => {
                 <li class="step step-primary" data-content={page.label === props.activePage && page.done(props.userInput) ? '✓' : '●'}>{page.label}</li>
               </Match>
               <Match when={page.done(props.userInput)}>
-                <li class="step step-info cursor-pointer" data-content="✓" onClick={() => props.triggerEvent(["ChangeSite", page.label])}>{page.label}</li>
+                <li class="step step-success cursor-pointer" data-content="✓" onClick={() => props.triggerEvent(["ChangeSite", page.label])}>{page.label}</li>
               </Match>
             </Switch>
           )}

@@ -75,7 +75,7 @@ export const store = () => createStore<State>({
 
     },
   },
-  initialized: false,
+  initialized: true,
   currentPage: "Start",
 })
 
