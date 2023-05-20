@@ -7,6 +7,10 @@ import { StateOutput } from "./StateOutput";
 import { createContainers, createEvents } from "./form/Values"
 import { Initial } from "./start/Initial";
 import { Footer } from "./Footer";
+import { TimePage } from "./time/TimePage";
+import { PlayPage } from "./play/PlayPage";
+import { MasterPage } from "./master/MasterPage";
+import { SummaryPage } from "./summary/SummaryPage";
 
 const [state, setState] = store();
 const { name, mail, phone, friend01, friend02 } = createContainers(state, setState);
@@ -26,6 +30,18 @@ const App = () => {
             <Switch>
               <Match when={state.currentPage === "Start"}>
                 <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
+              </Match>
+              <Match when={state.currentPage === "Zeit"}>
+                <TimePage />
+              </Match>
+              <Match when={state.currentPage === "Spielen"}>
+                <PlayPage />
+              </Match>
+              <Match when={state.currentPage === "Leiten"}>
+                <MasterPage />
+              </Match>
+              <Match when={state.currentPage === "Zusammenfassung"}>
+                <SummaryPage />
               </Match>
             </Switch>
             <Footer pages={state.pages} triggerEvent={triggerEvent} activePage={state.currentPage} />
