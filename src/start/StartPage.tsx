@@ -1,4 +1,4 @@
-import { AllContainers, } from "../form/Values"
+import { AllContainers, isEmptyString, } from "../form/Values"
 import { WithSidebar } from "../layout/WithSidebar"
 import { UserInput } from "../state"
 import { ContactPerson, } from "./ContactPerson"
@@ -20,5 +20,5 @@ export const StartPage = (props: Props) => {
 
 export const startIsDone = (userInput: UserInput): boolean => {
 
-    return userInput.contact.name.trim().length > 0 && userInput.contact.mail.trim().length > 0;
+    return !isEmptyString(userInput.contact.name) && !isEmptyString(userInput.contact.mail);
 }

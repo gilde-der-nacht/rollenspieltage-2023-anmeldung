@@ -1,7 +1,7 @@
 import { JSXElement } from "solid-js";
 import { TextInput } from "../form/TextInput";
 import { MailInput } from "../form/MailInput";
-import { ComplexContainer, TriggerEvent } from "../form/Values";
+import { ComplexContainer, TriggerEvent, isEmptyString } from "../form/Values";
 import { Button } from "../common/Button";
 import { ContactUser } from "../state";
 
@@ -14,7 +14,7 @@ export const Initial = (props: Props): JSXElement => {
 
     const startRegistration = (e: Event) => {
         e.preventDefault();
-        if (props.contact.name.val().trim().length > 0 && props.contact.mail.val().trim().length > 0) {
+        if (!isEmptyString(props.contact.name.val()) && !isEmptyString(props.contact.mail.val())) {
             props.triggerEvent(["StartRegistration"]);
         }
     }

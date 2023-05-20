@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 import { Card } from "../common/Card";
 import { Heading } from "../form/Heading"
-import { AllContainers } from "../form/Values";
+import { AllContainers, isEmptyString } from "../form/Values";
 import { Alert } from "../common/Alert";
 import { InputAndButton } from "../form/InputAndButton";
 import { Availability } from "./Availability";
@@ -13,13 +13,13 @@ export type PeopleListProps = {
 
 export const PeopleList = (props: PeopleListProps) => {
     const emptySlots = () => {
-        return props.containers.f1.name.val().trim().length === 0 || props.containers.f2.name.val().trim().length === 0
+        return isEmptyString(props.containers.f1.name.val()) || isEmptyString(props.containers.f2.name.val())
     }
 
     const addFriend = (name: string) => {
-        if (props.containers.f1.name.val().trim().length === 0) {
+        if (isEmptyString(props.containers.f1.name.val())) {
             props.containers.f1.name.setVal(name);
-        } else if (props.containers.f2.name.val().trim().length === 0) {
+        } else if (isEmptyString(props.containers.f2.name.val())) {
             props.containers.f2.name.setVal(name);
         }
     }
@@ -43,7 +43,7 @@ export const PeopleList = (props: PeopleListProps) => {
                 <AgeGroupSwitch ageGroup={props.containers.cc.age} id="pl0" />
             </div>
         </Card>
-        <Show when={props.containers.f1.name.val().trim().length > 0}>
+        <Show when={!isEmptyString(props.containers.f1.name.val())}>
             <Card remove={() => removeFriend("1")} >
                 <div class="grid gap-2">
                     <span>
@@ -54,7 +54,7 @@ export const PeopleList = (props: PeopleListProps) => {
                 </div>
             </Card>
         </Show>
-        <Show when={props.containers.f2.name.val().trim().length > 0}>
+        <Show when={!isEmptyString(props.containers.f2.name.val())}>
             <Card remove={() => removeFriend("2")} >
                 <div class="grid gap-2">
                     <span>

@@ -47,6 +47,8 @@ export type State = {
   currentPage: PageLabel;
 }
 
+export type Day = "Samstag" | "Sonntag";
+
 export const store = () => createStore<State>({
   pages: [
     { label: "Start", done: startIsDone },
@@ -81,6 +83,6 @@ export const store = () => createStore<State>({
     },
   },
   initialized: true,
-  currentPage: "Start",
+  currentPage: "Zeit",
 })
 

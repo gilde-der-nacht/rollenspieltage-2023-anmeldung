@@ -32,7 +32,7 @@ const App = () => {
                 <StartPage containers={containers} />
               </Match>
               <Match when={state.currentPage === "Zeit"}>
-                <TimePage />
+                <TimePage containers={containers} />
               </Match>
               <Match when={state.currentPage === "Spielen"}>
                 <PlayPage />

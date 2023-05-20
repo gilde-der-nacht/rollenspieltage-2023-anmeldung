@@ -1,4 +1,4 @@
-import { Container } from "./Values";
+import { Container, isEmptyString } from "./Values";
 
 export type InputProps = {
     label: string;
@@ -16,11 +16,13 @@ export const TextInput = (props: InputProps) => {
             </strong>
         </label>
         <input type="text" placeholder="" class="input input-bordered" required={props.required} value={props.value.val()} onInput={(e) => props.value.setVal((e.target as HTMLInputElement).value)} />
-        {props.hint?.trim().length > 0 && (
-            <label class="label">
-                <span class="label-text-alt">{props.hint} </span>
-                {/* <span class="label-text-alt">Bottom Right label</span> */}
-            </label>
-        )}
+        {
+            !isEmptyString(props.hint) && (
+                <label class="label">
+                    <span class="label-text-alt">{props.hint} </span>
+                    {/* <span class="label-text-alt">Bottom Right label</span> */}
+                </label>
+            )
+        }
     </div>
 }

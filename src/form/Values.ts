@@ -106,3 +106,7 @@ export const createEvents = (setState: SetStoreFunction<State>): TriggerEvent =>
         }
     }
 }
+
+export const isEmptyString = (s: string | undefined): boolean => {
+    return s?.trim().length === 0 ?? true;
+}
