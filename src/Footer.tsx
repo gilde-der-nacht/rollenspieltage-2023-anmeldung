@@ -24,7 +24,7 @@ export const Footer = (props: Props) => {
         return pages[currPage() + 1]
     }
 
-    return <footer class="footer items-center p-4 mt-3 bg-neutral text-neutral-content">
+    return <footer class="footer items-center p-4 mt-6 bg-neutral text-neutral-content">
         <div class="flex w-full flex-row">
             <Show when={currPage() > 0}>
                 <div class="grid flex-grow h-16 place-items-start items-center">
