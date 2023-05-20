@@ -13,10 +13,13 @@ export type Availability = {
   sunday: boolean;
 }
 
-export type AgeGroup = |
-  "6 bis 9 Jahre" |
-  "10 bis 16 Jahre" |
-  "16+ Jahre";
+export const ageGroups = [
+  "6 bis 9 Jahre",
+  "10 bis 16 Jahre",
+  "16+ Jahre"
+] as const;
+
+export type AgeGroup = typeof ageGroups[number];
 
 export type ContactUser = {
   name: string;

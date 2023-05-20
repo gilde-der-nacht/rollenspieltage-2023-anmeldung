@@ -10,8 +10,8 @@ export const Card = (props: Props) => {
         <div class="card-body">
             <p>{props.children}</p>
             {props.remove !== undefined && (
-                <div class="card-actions justify-end">
-                    <button class="btn btn-error btn-sm" onClick={props.remove}>Entfernen</button>
+                <div class="card-actions justify-end mt-4">
+                    <button class="btn btn-error btn-sm btn-block" onClick={props.remove}>Entfernen</button>
                 </div>
             )}
         </div>

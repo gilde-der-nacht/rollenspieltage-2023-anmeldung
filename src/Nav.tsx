@@ -13,7 +13,7 @@ type Props = {
 export const Nav = (props: Props) => {
   return <div class="py-4 xNavWrapper">
     <div class="flex bg-neutral text-primary-content p-3 place-content-center">
-      <ul class="steps steps-vertical lg:steps-horizontal">
+      <ul class="steps steps-vertical md:steps-horizontal">
         <For each={props.pages}>
           {(page) => (
             <Switch fallback={

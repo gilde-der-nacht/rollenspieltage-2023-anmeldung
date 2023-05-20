@@ -5,6 +5,7 @@ import { AllContainers } from "../form/Values";
 import { Alert } from "../common/Alert";
 import { InputAndButton } from "../form/InputAndButton";
 import { Availability } from "./Availability";
+import { AgeGroupSwitch } from "./AgeGroupSwitch";
 
 export type PeopleListProps = {
     containers: AllContainers;
@@ -39,6 +40,7 @@ export const PeopleList = (props: PeopleListProps) => {
                     1: <strong>{props.containers.cc.name.val()}</strong> (Du)
                 </span>
                 <Availability label={false} saturday={props.containers.cc.saturday} sunday={props.containers.cc.sunday} />
+                <AgeGroupSwitch ageGroup={props.containers.cc.age} id="pl0" />
             </div>
         </Card>
         <Show when={props.containers.f1.name.val().trim().length > 0}>
@@ -48,6 +50,7 @@ export const PeopleList = (props: PeopleListProps) => {
                         2: <strong>{props.containers.f1.name.val()}</strong>
                     </span>
                     <Availability label={false} saturday={props.containers.f1.saturday} sunday={props.containers.f2.sunday} />
+                    <AgeGroupSwitch ageGroup={props.containers.f1.age} id="pl1" />
                 </div>
             </Card>
         </Show>
@@ -58,6 +61,7 @@ export const PeopleList = (props: PeopleListProps) => {
                         3: <strong>{props.containers.f2.name.val()}</strong>
                     </span>
                     <Availability label={false} saturday={props.containers.f2.saturday} sunday={props.containers.f2.sunday} />
+                    <AgeGroupSwitch ageGroup={props.containers.f2.age} id="pl2" />
                 </div>
             </Card>
         </Show>

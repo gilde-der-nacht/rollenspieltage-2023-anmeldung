@@ -25,9 +25,9 @@ export const Footer = (props: Props) => {
     }
 
     return <footer class="footer items-center p-4 mt-3 bg-neutral text-neutral-content">
-        <div class="flex flex-col w-full lg:flex-row">
-            <div class="grid flex-grow h-16 place-items-start items-center">
-                <Show when={currPage() > 0}>
+        <div class="flex w-full flex-row">
+            <Show when={currPage() > 0}>
+                <div class="grid flex-grow h-16 place-items-start items-center">
                     <Button onClick={() => props.triggerEvent(["ChangeSite", prevPage()])}>
                         <span>
                             <span class="font-normal">Zurück zu</span>
@@ -35,10 +35,10 @@ export const Footer = (props: Props) => {
                             <strong>{prevPage()}</strong>
                         </span>
                     </Button>
-                </Show>
-            </div>
-            <div class="grid flex-grow h-16 place-items-end items-center">
-                <Show when={currPage() < props.pages.length - 1}>
+                </div>
+            </Show>
+            <Show when={currPage() < props.pages.length - 1}>
+                <div class="grid flex-grow h-16 place-items-end items-center">
                     <Button onClick={() => props.triggerEvent(["ChangeSite", nextPage()])}>
                         <span>
                             <span class="font-normal">Weiter zu</span>
@@ -46,8 +46,8 @@ export const Footer = (props: Props) => {
                             <strong>{nextPage()}</strong>
                         </span>
                     </Button>
-                </Show>
-            </div>
+                </div>
+            </Show>
         </div>
     </footer>
 }

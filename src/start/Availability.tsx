@@ -16,7 +16,7 @@ export const Availability = (props: Props) => {
                 </strong>
             </label>
         </Show>
-        <div class="flex gap-3">
+        <div class="flex gap-3 flex-wrap">
             <div class={`cursor-pointer badge badge-ghost badge-lg ${props.saturday.val() ? 'badge-outline' : ''}`} onClick={() => { props.saturday.setVal(!props.saturday.val()) }}>
                 <input type="checkbox" checked={props.saturday.val()} class="checkbox checkbox-xs" />
                 <span class="ml-2">Samstag</span>

@@ -4,6 +4,7 @@ import { MailInput } from "../form/MailInput"
 import { TextInput } from "../form/TextInput"
 import { ComplexContainer } from "../form/Values"
 import { ContactUser } from "../state"
+import { AgeGroupSwitch } from "./AgeGroupSwitch"
 import { Availability } from "./Availability"
 
 export type ContactProps = {
@@ -18,5 +19,6 @@ export const ContactPerson = (props: ContactProps) => {
         <Alert kind="info" text="Per Telefon können wir dich am Event spontan erreichen, sollte z.B. eine Spielrunde ausfallen." />
         <TextInput label="Telefonnummer" hint="Optional" value={props.contact.phone} />
         <Availability saturday={props.contact.saturday} sunday={props.contact.sunday} />
+        <AgeGroupSwitch ageGroup={props.contact.age} id="main" />
     </div>
 }
