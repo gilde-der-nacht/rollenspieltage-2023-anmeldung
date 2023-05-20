@@ -26,6 +26,7 @@ export type ContactUser = {
   mail: string;
   phone: string;
   age: AgeGroup;
+  help: boolean;
 } & Availability;
 
 export type Friend = {
@@ -61,6 +62,7 @@ export const store = () => createStore<State>({
       phone: "",
       saturday: true,
       sunday: true,
+      help: false,
       age: "16+ Jahre",
     },
     friend01: {

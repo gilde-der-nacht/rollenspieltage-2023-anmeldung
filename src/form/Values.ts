@@ -37,6 +37,10 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
             val: () => state.userInput.contact.age,
             setVal: (n) => setState('userInput', "contact", "age", n)
         },
+        help: {
+            val: () => state.userInput.contact.help,
+            setVal: (n) => setState('userInput', "contact", "help", n)
+        },
     }
 
     const f1: ComplexContainer<Friend> = {
