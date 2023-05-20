@@ -1,6 +1,7 @@
 import { For, Show } from "solid-js"
 import { Container } from "../form/Values";
 import { AgeGroup, ageGroups } from "../state";
+import { RadioButton } from "../form/RadioButton";
 
 type Props = {
     id: string;
@@ -20,10 +21,7 @@ export const AgeGroupSwitch = (props: Props) => {
         <div class="flex gap-3 flex-wrap">
             <For each={ageGroups}>
                 {(group) => (
-                    <div class={`cursor-pointer badge badge-ghost badge-lg ${props.ageGroup.val() === group ? 'badge-outline' : ''}`} onClick={() => { props.ageGroup.setVal(group) }}>
-                        <input type="radio" name={props.id} class="radio" checked={props.ageGroup.val() === group} />
-                        <span class="ml-2">{group}</span>
-                    </div>
+                    <RadioButton id={props.id} isChecked={() => props.ageGroup.val() === group} label={group} onClick={() => props.ageGroup.setVal(group)} />
                 )}
             </For>
         </div>

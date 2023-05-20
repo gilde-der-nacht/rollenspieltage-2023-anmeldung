@@ -34,12 +34,15 @@ export type Friend = {
   age: AgeGroup;
 } & Availability;
 
+export const eating = ["Ich werde vermutlich von eure Essensangebot gebrauch machen.", "Keine Angabe", "Ich werde mich voraussichtlich selber um meine Verpflegung kümmern."] as const;
+export type Eating = typeof eating[number];
+
 export type TimeWindow = {
   [Properties in Day]: {
     start: string;
     end: string;
-  }
-}
+  };
+} & { eating: Eating }
 
 export type UserInput = {
   contact: ContactUser;
@@ -96,7 +99,8 @@ export const store = () => createStore<State>({
       Sonntag: {
         start: "Startzeit wählen",
         end: "Endzeit wählen",
-      }
+      },
+      eating: "Keine Angabe"
     }
   },
   initialized: true,

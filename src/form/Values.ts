@@ -90,6 +90,10 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
         Sonntag: {
             val: () => state.userInput.time.Sonntag,
             setVal: (n) => setState('userInput', "time", "Sonntag", n)
+        },
+        eating: {
+            val: () => state.userInput.time.eating,
+            setVal: (n) => setState('userInput', "time", "eating", n)
         }
     }
     return { cc, f1, f2, time }

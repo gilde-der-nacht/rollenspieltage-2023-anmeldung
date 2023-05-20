@@ -7,15 +7,18 @@ type Props = {
     time: ComplexContainer<TimeWindow>;
 }
 
+export const lunch = "Mittagessen" as const;
+export const dinner = "Nachtessen" as const;
+
 export const program = {
     Samstag: {
         start: 10, end: 24, program: {
-            10: "Block", 12: "Mittagessen", 13: "Block", 15: "Block", 17: "Block", 19: "Nachtessen", 20: "Block", 22: "Block"
+            10: "Block", 12: lunch, 13: "Block", 15: "Block", 17: "Block", 19: dinner, 20: "Block", 22: "Block"
         }
     },
     Sonntag: {
         start: 10, end: 19, program: {
-            10: "Block", 12: "Mittagessen", 13: "Block", 15: "Block", 17: "Block"
+            10: "Block", 12: lunch, 13: "Block", 15: "Block", 17: "Block"
         }
     },
 }
@@ -30,7 +33,7 @@ const prettyfy = (t: string | undefined): string => {
     return t
 }
 
-const isEating = (t: string | undefined): boolean => t === "Mittagessen" || t === "Nachtessen";
+const isEating = (t: string | undefined): boolean => t === lunch || t === dinner;
 
 const isVisiting = (h: number, day: Day, timeWindow: ComplexContainer<TimeWindow>): boolean => {
     const { start, end } = timeWindow[day].val();

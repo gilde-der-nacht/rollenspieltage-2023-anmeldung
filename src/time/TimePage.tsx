@@ -3,6 +3,7 @@ import { AllContainers } from "../form/Values"
 import { TwoColumns } from "../layout/TwoColumns"
 import { DayAvailability } from "./DayAvailability"
 import { DayCalendar } from "./DayCalendar"
+import { EatingQuestion } from "./EatingQuestion"
 import { StartEndChooser } from "./StartEndChooser"
 
 type Props = {
@@ -25,6 +26,7 @@ export const TimePage = (props: Props) => {
                 <DayAvailability containers={props.containers} day="Sonntag" />
                 <StartEndChooser day="Sonntag" time={props.containers.time} />
                 <DayCalendar day="Sonntag" time={props.containers.time} />
+                <EatingQuestion time={props.containers.time} />
             </div>
         } />
     </div>
