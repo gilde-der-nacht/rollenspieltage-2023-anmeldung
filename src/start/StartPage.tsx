@@ -1,22 +1,24 @@
-import { Container } from "../form/Values"
+import { AllContainers, } from "../form/Values"
 import { WithSidebar } from "../layout/WithSidebar"
 import { UserInput } from "../state"
-import { ContactPerson, ContactProps } from "./ContactPerson"
-import { PeopleList, PeopleListProps } from "./PeopleList"
+import { ContactPerson, } from "./ContactPerson"
+import { PeopleList } from "./PeopleList"
 
-type Props = ContactProps & PeopleListProps
+type Props = {
+    containers: AllContainers;
+}
 
 export const StartPage = (props: Props) => {
     return <>
         <WithSidebar main={
-            <ContactPerson name={props.name} mail={props.mail} phone={props.phone} />
+            <ContactPerson contact={props.containers.cc} />
         } side={
-            <PeopleList name={props.name} friend01={props.friend01} friend02={props.friend02} />
+            <PeopleList containers={props.containers} />
         } />
     </>
 }
 
 export const startIsDone = (userInput: UserInput): boolean => {
 
-    return userInput.name.trim().length > 0 && userInput.mail.trim().length > 0;
+    return userInput.contact.name.trim().length > 0 && userInput.contact.mail.trim().length > 0;
 }

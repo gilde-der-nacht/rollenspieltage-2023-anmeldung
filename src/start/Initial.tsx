@@ -1,20 +1,20 @@
 import { JSXElement } from "solid-js";
 import { TextInput } from "../form/TextInput";
 import { MailInput } from "../form/MailInput";
-import { Container, TriggerEvent } from "../form/Values";
+import { ComplexContainer, TriggerEvent } from "../form/Values";
 import { Button } from "../common/Button";
+import { ContactUser } from "../state";
 
 type Props = {
-    name: Container<string>;
-    mail: Container<string>;
-    phone: Container<string>;
+    contact: ComplexContainer<ContactUser>;
     triggerEvent: TriggerEvent;
 }
 
 export const Initial = (props: Props): JSXElement => {
+
     const startRegistration = (e: Event) => {
         e.preventDefault();
-        if (props.name.val().trim().length > 0 && props.mail.val().trim().length > 0) {
+        if (props.contact.name.val().trim().length > 0 && props.contact.mail.val().trim().length > 0) {
             props.triggerEvent(["StartRegistration"]);
         }
     }
@@ -28,9 +28,9 @@ export const Initial = (props: Props): JSXElement => {
             <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <div class="card-body">
                     <form onSubmit={startRegistration}>
-                        <TextInput label="Name *" required={true} hint="Pflichtfeld" value={props.name} />
-                        <MailInput label="E-Mail-Adresse *" required={true} hint="Pflichtfeld" value={props.mail} />
-                        <TextInput label="Telefonnummer" hint="Optional" value={props.phone} />
+                        <TextInput label="Name *" required={true} hint="Pflichtfeld" value={props.contact.name} />
+                        <MailInput label="E-Mail-Adresse *" required={true} hint="Pflichtfeld" value={props.contact.mail} />
+                        <TextInput label="Telefonnummer" hint="Optional" value={props.contact.phone} />
                         <Button onClick={startRegistration}>Anmeldung beginnen</Button>
                     </form>
                 </div>

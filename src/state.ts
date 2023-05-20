@@ -8,12 +8,32 @@ export type Page = {
   done: (userInput: UserInput) => boolean;
 }
 
-export type UserInput = {
+export type Availability = {
+  saturday: boolean;
+  sunday: boolean;
+}
+
+export type AgeGroup = |
+  "6 bis 9 Jahre" |
+  "10 bis 16 Jahre" |
+  "16+ Jahre";
+
+export type ContactUser = {
   name: string;
   mail: string;
   phone: string;
-  friend01: string;
-  friend02: string;
+  age: AgeGroup;
+} & Availability;
+
+export type Friend = {
+  name: string;
+  age: AgeGroup;
+} & Availability;
+
+export type UserInput = {
+  contact: ContactUser;
+  friend01: Friend;
+  friend02: Friend;
 }
 
 export type State = {
@@ -32,13 +52,30 @@ export const store = () => createStore<State>({
     { label: "Zusammenfassung", done: () => false },
   ],
   userInput: {
-    name: "",
-    mail: "",
-    phone: "",
-    friend01: "",
-    friend02: "",
+    contact: {
+      name: "",
+      mail: "",
+      phone: "",
+      saturday: true,
+      sunday: true,
+      age: "16+ Jahre",
+    },
+    friend01: {
+      name: "",
+      saturday: true,
+      sunday: true,
+      age: "16+ Jahre"
+
+    },
+    friend02: {
+      name: "",
+      saturday: true,
+      sunday: true,
+      age: "16+ Jahre"
+
+    },
   },
-  initialized: true,
+  initialized: false,
   currentPage: "Start",
 })
 

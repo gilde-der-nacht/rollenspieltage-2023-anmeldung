@@ -13,7 +13,7 @@ import { MasterPage } from "./master/MasterPage";
 import { SummaryPage } from "./summary/SummaryPage";
 
 const [state, setState] = store();
-const { name, mail, phone, friend01, friend02 } = createContainers(state, setState);
+const containers = createContainers(state, setState);
 const triggerEvent = createEvents(setState);
 
 const App = () => {
@@ -23,13 +23,13 @@ const App = () => {
         <h1 class="text-4xl font-bold">Luzerner Rollenspieltage 2023</h1>
         <h2 class="text-3xl">Anmeldung</h2>
         <Switch fallback={
-          <Initial name={name} mail={mail} phone={phone} triggerEvent={triggerEvent} />
+          <Initial contact={containers.cc} triggerEvent={triggerEvent} />
         }>
           <Match when={state.initialized}>
             <Nav pages={state.pages} triggerEvent={triggerEvent} activePage={state.currentPage} userInput={state.userInput} />
             <Switch>
               <Match when={state.currentPage === "Start"}>
-                <StartPage name={name} mail={mail} phone={phone} friend01={friend01} friend02={friend02} />
+                <StartPage containers={containers} />
               </Match>
               <Match when={state.currentPage === "Zeit"}>
                 <TimePage />
