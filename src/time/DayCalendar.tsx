@@ -66,7 +66,7 @@ export const DayCalendar = (props: Props) => {
                                 <tr class={isEating(dayProgram()[h]) ? "active" : "hover"}>
                                     <th>{h} Uhr</th>
                                     <td>{isVisiting(h, props.day, props.time) ? (
-                                        <div class="indicator pb-3">
+                                        <div class="indicator pb-3" title="Deine/Eure Anwesenheit">
                                             <span class="indicator-item indicator-middle indicator-center badge badge-success rounded-full badge-xs"></span>
                                         </div>
                                     ) : ""}</td>

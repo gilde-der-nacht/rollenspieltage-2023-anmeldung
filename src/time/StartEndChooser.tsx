@@ -1,7 +1,9 @@
+import { Show } from "solid-js";
 import { DropdownItem, Dropdown } from "../form/Dropdown"
 import { ComplexContainer } from "../form/Values";
 import { Day, TimeWindow } from "../state"
 import { program } from "./DayCalendar";
+import { Alert } from "../common/Alert";
 
 type Props = {
     day: Day;
@@ -37,6 +39,16 @@ export const StartEndChooser = (props: Props) => {
         })
     }))
 
+    const showAlert = (): boolean => {
+        if (isNaN(Number.parseInt(day.val().start))) {
+            return false;
+        }
+        if (isNaN(Number.parseInt(day.val().end))) {
+            return false;
+        }
+        return Number.parseInt(day.val().start) >= Number.parseInt(day.val().end);
+    }
+
     return <div>
         <label class="label">
             <strong>
@@ -48,5 +60,8 @@ export const StartEndChooser = (props: Props) => {
             bis
             <Dropdown label={day.val().end} items={endItem()} />
         </div>
+        <Show when={showAlert()}>
+            <Alert kind="error" text="Bitte wähle eine Startzeit aus, die vor der Endzeit ist." />
+        </Show>
     </div>
 }
