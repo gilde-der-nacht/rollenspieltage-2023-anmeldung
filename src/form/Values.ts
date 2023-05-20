@@ -1,5 +1,5 @@
 import { SetStoreFunction, Store } from "solid-js/store";
-import { ContactUser, Friend, PageLabel, State } from "../state";
+import { ContactUser, Friend, PageLabel, State, TimeWindow } from "../state";
 
 export type Container<T> = {
     val: () => T;
@@ -80,7 +80,19 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
             setVal: (n) => setState('userInput', "friend02", "age", n)
         },
     }
-    return { cc, f1, f2 }
+
+
+    const time: ComplexContainer<TimeWindow> = {
+        Samstag: {
+            val: () => state.userInput.time.Samstag,
+            setVal: (n) => setState('userInput', "time", "Samstag", n)
+        },
+        Sonntag: {
+            val: () => state.userInput.time.Sonntag,
+            setVal: (n) => setState('userInput', "time", "Sonntag", n)
+        }
+    }
+    return { cc, f1, f2, time }
 }
 
 export type AllContainers = ReturnType<typeof createContainers>;

@@ -34,10 +34,18 @@ export type Friend = {
   age: AgeGroup;
 } & Availability;
 
+export type TimeWindow = {
+  [Properties in Day]: {
+    start: string;
+    end: string;
+  }
+}
+
 export type UserInput = {
   contact: ContactUser;
   friend01: Friend;
   friend02: Friend;
+  time: TimeWindow;
 }
 
 export type State = {
@@ -59,8 +67,8 @@ export const store = () => createStore<State>({
   ],
   userInput: {
     contact: {
-      name: "",
-      mail: "",
+      name: "Hans Muster",
+      mail: "mail@muster.hans",
       phone: "",
       saturday: true,
       sunday: true,
@@ -79,8 +87,17 @@ export const store = () => createStore<State>({
       saturday: true,
       sunday: true,
       age: "16+ Jahre"
-
     },
+    time: {
+      Samstag: {
+        start: "Startzeit wählen",
+        end: "Endzeit wählen",
+      },
+      Sonntag: {
+        start: "Startzeit wählen",
+        end: "Endzeit wählen",
+      }
+    }
   },
   initialized: true,
   currentPage: "Zeit",

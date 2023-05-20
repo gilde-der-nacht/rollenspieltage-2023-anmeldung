@@ -5,8 +5,7 @@ type Props = {
     day: Day;
 }
 
-
-const program = {
+export const program = {
     Samstag: {
         start: 10, end: 24, program: {
             10: "Block", 12: "Mittagessen", 13: "Block", 15: "Block", 17: "Block", 19: "Nachtessen", 20: "Block", 22: "Block"
