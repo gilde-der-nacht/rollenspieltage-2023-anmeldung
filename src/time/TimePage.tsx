@@ -1,10 +1,12 @@
 import { Heading } from "../form/Heading"
 import { AllContainers } from "../form/Values"
 import { TwoColumns } from "../layout/TwoColumns"
+import { UserInput } from "../state"
 import { DayAvailability } from "./DayAvailability"
 import { DayCalendar } from "./DayCalendar"
 import { EatingQuestion } from "./EatingQuestion"
 import { StartEndChooser } from "./StartEndChooser"
+import { rangeIsValid } from "./timeUtil"
 
 type Props = {
     containers: AllContainers;
@@ -30,4 +32,30 @@ export const TimePage = (props: Props) => {
             </div>
         } />
     </div>
+}
+
+export const timeIsDone = (userInput: UserInput): boolean => {
+    if (userInput.contact.saturday || userInput.friend01.saturday || userInput.friend02.saturday) {
+        if (userInput.time.Samstag.start === "Startzeit wählen" || userInput.time.Samstag.end === "Endzeit wählen") {
+            return false;
+        }
+        try {
+            if (!rangeIsValid(userInput.time.Samstag.start, userInput.time.Samstag.end)) {
+                return false;
+            }
+        } catch (_) {
+        }
+    }
+    if (userInput.contact.sunday || userInput.friend01.sunday || userInput.friend02.sunday) {
+        if (userInput.time.Sonntag.start === "Startzeit wählen" || userInput.time.Sonntag.end === "Endzeit wählen") {
+            return false;
+        }
+        try {
+            if (!rangeIsValid(userInput.time.Sonntag.start, userInput.time.Sonntag.end)) {
+                return false;
+            }
+        } catch (_) {
+        }
+    }
+    return true
 }

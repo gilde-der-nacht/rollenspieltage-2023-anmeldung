@@ -5,6 +5,7 @@ import { Eating, TimeWindow, eating } from "../state"
 import { ComplexContainer, Container } from "../form/Values"
 import { dinner, lunch, program } from "./DayCalendar"
 import { RadioButton } from "../form/RadioButton"
+import { parseTimeString } from "./timeUtil"
 
 type Props = {
     time: ComplexContainer<TimeWindow>;
@@ -20,13 +21,19 @@ export const EatingQuestion = (props: Props) => {
 
         let ret = false;
         ea.forEach((time) => {
-            if (Number.parseInt(props.time.Samstag.val().start) <= time && Number.parseInt(props.time.Samstag.val().end) > time) {
-                ret = true;
+            try {
+                if (parseTimeString(props.time.Samstag.val().start) <= time && parseTimeString(props.time.Samstag.val().end) > time) {
+                    ret = true;
+                }
+            } catch (_) {
             }
         })
         eo.forEach((time) => {
-            if (Number.parseInt(props.time.Sonntag.val().start) <= time && Number.parseInt(props.time.Samstag.val().end) > time) {
-                ret = true;
+            try {
+                if (parseTimeString(props.time.Sonntag.val().start) <= time && parseTimeString(props.time.Samstag.val().end) > time) {
+                    ret = true;
+                }
+            } catch (_) {
             }
         })
         return ret;

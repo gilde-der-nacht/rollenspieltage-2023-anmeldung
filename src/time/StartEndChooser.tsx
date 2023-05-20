@@ -4,6 +4,7 @@ import { ComplexContainer } from "../form/Values";
 import { Day, TimeWindow } from "../state"
 import { program } from "./DayCalendar";
 import { Alert } from "../common/Alert";
+import { parseTimeString, rangeIsValid } from "./timeUtil";
 
 type Props = {
     day: Day;
@@ -40,13 +41,11 @@ export const StartEndChooser = (props: Props) => {
     }))
 
     const showAlert = (): boolean => {
-        if (isNaN(Number.parseInt(day.val().start))) {
+        try {
+            return !rangeIsValid(day.val().start, day.val().end)
+        } catch (_) {
             return false;
         }
-        if (isNaN(Number.parseInt(day.val().end))) {
-            return false;
-        }
-        return Number.parseInt(day.val().start) >= Number.parseInt(day.val().end);
     }
 
     return <div>

@@ -1,6 +1,7 @@
 import { For } from "solid-js";
 import { Day, TimeWindow } from "../state";
 import { ComplexContainer } from "../form/Values";
+import { parseTimeString } from "./timeUtil";
 
 type Props = {
     day: Day;
@@ -37,7 +38,11 @@ const isEating = (t: string | undefined): boolean => t === lunch || t === dinner
 
 const isVisiting = (h: number, day: Day, timeWindow: ComplexContainer<TimeWindow>): boolean => {
     const { start, end } = timeWindow[day].val();
-    return Number.parseInt(start) <= h && Number.parseInt(end) > h;
+    try {
+        return parseTimeString(start) <= h && parseTimeString(end) > h;
+    } catch (error) {
+        return false;
+    }
 }
 
 export const DayCalendar = (props: Props) => {

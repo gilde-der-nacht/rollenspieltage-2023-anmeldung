@@ -1,5 +1,6 @@
 import { createStore } from "solid-js/store";
 import { startIsDone } from "./start/StartPage";
+import { timeIsDone } from "./time/TimePage";
 
 export const pages = ["Start", "Zeit", "Spielen", "Leiten", "Zusammenfassung"] as const;
 export type PageLabel = typeof pages[number];
@@ -63,7 +64,7 @@ export type Day = "Samstag" | "Sonntag";
 export const store = () => createStore<State>({
   pages: [
     { label: "Start", done: startIsDone },
-    { label: "Zeit", done: () => false },
+    { label: "Zeit", done: timeIsDone },
     { label: "Spielen", done: () => false },
     { label: "Leiten", done: () => false },
     { label: "Zusammenfassung", done: () => false },
