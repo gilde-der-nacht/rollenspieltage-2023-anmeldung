@@ -66,11 +66,16 @@ export const RoundForm = (props: Props) => {
         return e;
     }
 
+    const reset = () => {
+        setValidate(false);
+        props.onReset();
+    }
 
     const submit = () => {
         setValidate(true);
         const e = errors();
         if (e.length === 0) {
+            setValidate(false);
             props.onSubmit();
         }
     }
@@ -98,10 +103,12 @@ export const RoundForm = (props: Props) => {
         <NumberInput label="Spieleranzahl Minimum" value={minPlayer} />
         <NumberInput label="Spieleranzahl Maximum" value={maxPlayer} />
         <Show when={validate() && errors().length > 0}>
-            <Alert kind="error" text={errors().join(" ")} />
+            <div class="mb-3">
+                <Alert kind="error" text={errors().join(" ")} />
+            </div>
         </Show>
         <div class="flex gap-3 flex-wrap">
-            <Button onClick={(e) => { e.preventDefault(); props.onReset() }} secondary={true}>Abbrechen</Button>
+            <Button onClick={(e) => { e.preventDefault(); reset() }} secondary={true}>Abbrechen</Button>
             <Button onClick={(e) => { e.preventDefault(); submit() }}>{props.isNew ? "Erstellen" : "Speichern"}</Button>
         </div>
     </form>
