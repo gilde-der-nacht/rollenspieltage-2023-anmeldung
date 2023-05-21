@@ -13,7 +13,8 @@ type Props = {
     value: Signal<MasterRound>;
     isNew: boolean;
     onSubmit: () => void;
-    onReset: () => void;
+    onAbort: () => void;
+    onDelete?: () => void;
 }
 
 const [validate, setValidate] = createSignal(false);
@@ -66,9 +67,9 @@ export const RoundForm = (props: Props) => {
         return e;
     }
 
-    const reset = () => {
+    const abort = () => {
         setValidate(false);
-        props.onReset();
+        props.onAbort();
     }
 
     const submit = () => {
@@ -80,7 +81,14 @@ export const RoundForm = (props: Props) => {
         }
     }
 
-    return <form>
+    const deleteX = () => {
+        if (props.onDelete !== undefined) {
+            setValidate(false);
+            props.onDelete();
+        }
+    }
+
+    return <form onSubmit={(e) => { e.preventDefault(); submit() }}>
         <Heading title={props.isNew ? "Spielrunde erstellen" : "Spielrunde editieren"} />
         <TextInput label="Titel" value={title} />
         <TextInput label="System" value={system} />
@@ -108,7 +116,13 @@ export const RoundForm = (props: Props) => {
             </div>
         </Show>
         <div class="flex gap-3 flex-wrap">
-            <Button onClick={(e) => { e.preventDefault(); reset() }} secondary={true}>Abbrechen</Button>
+            <Button onClick={(e) => { e.preventDefault(); abort() }} secondary={true}>Abbrechen</Button>
+            <Show when={!props.isNew} >
+                <Button onClick={(e) => { e.preventDefault(); deleteX() }}
+                    delete={true}>
+                    Löschen
+                </Button>
+            </Show>
             <Button onClick={(e) => { e.preventDefault(); submit() }}>{props.isNew ? "Erstellen" : "Speichern"}</Button>
         </div>
     </form>

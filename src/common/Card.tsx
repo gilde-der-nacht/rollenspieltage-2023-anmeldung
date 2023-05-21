@@ -2,16 +2,16 @@ import { JSXElement } from "solid-js";
 
 type Props = {
     children: JSXElement;
-    remove?: () => void;
+    buttons?: JSXElement;
 }
 
 export const Card = (props: Props) => {
     return <div class="card card-compact bg-neutral shadow-xl">
         <div class="card-body">
             {props.children}
-            {props.remove !== undefined && (
+            {props.buttons !== undefined && (
                 <div class="card-actions justify-end mt-4">
-                    <button class="btn btn-error btn-sm btn-block" onClick={props.remove}>Entfernen</button>
+                    {props.buttons}
                 </div>
             )}
         </div>

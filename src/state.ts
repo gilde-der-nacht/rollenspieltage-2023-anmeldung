@@ -64,6 +64,7 @@ export const masterRoundDuration = [2, 4] as const;
 export type MasterRoundDuration = typeof masterRoundDuration[number];
 
 export type MasterRound = {
+  id: string;
   title: string;
   system: string;
   duration: MasterRoundDuration;

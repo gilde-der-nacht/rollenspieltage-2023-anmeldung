@@ -16,7 +16,7 @@ export const RoundsList = (props: Props) => {
         <div class="grid gap-3 md:grid-cols-3">
             <For each={props.master.gameRounds.val()}>
                 {(round) => (
-                    <RoundCard value={round} />
+                    <RoundCard value={round} master={props.master} />
                 )}
             </For>
         </div>

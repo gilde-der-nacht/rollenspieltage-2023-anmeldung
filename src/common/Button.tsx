@@ -5,6 +5,7 @@ export type ButtonProps = {
     onClick: (e?: Event) => void;
     children: JSXElement;
     secondary?: boolean;
+    delete?: boolean;
 }
 
 export const Button = (props: ButtonProps): JSXElement => {
@@ -15,6 +16,9 @@ export const Button = (props: ButtonProps): JSXElement => {
         }
         if (props.secondary) {
             c.push("btn-outline");
+        }
+        if (props.delete) {
+            c.push("btn-error");
         }
         return c.join(" ")
     }

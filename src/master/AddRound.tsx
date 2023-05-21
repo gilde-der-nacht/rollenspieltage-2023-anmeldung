@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js"
+import { createSignal, createUniqueId } from "solid-js"
 import { Master, MasterRound } from "../state"
 import { useModal } from "../common/Modal";
 import { RoundForm } from "./RoundForm";
@@ -8,27 +8,28 @@ type Props = {
     master: ComplexContainer<Master>;
 }
 
-const defaultRound: MasterRound = {
+const getDefaultRound = (): MasterRound => ({
+    id: crypto.randomUUID(),
     title: "",
     system: "",
     duration: 2,
     minPlayer: 2,
     maxPlayer: 4,
-}
+})
 
-const [round, setRound] = createSignal<MasterRound>({ ...defaultRound });
+const [round, setRound] = createSignal<MasterRound>(getDefaultRound());
 const { Modal, ModalButton, closeModal } = useModal("new-round");
 
 export const AddRounds = (props: Props) => {
-    const reset = () => {
-        setRound({ ...defaultRound });
+    const abort = () => {
+        setRound(getDefaultRound());
         closeModal();
     }
 
     const saveRound = () => {
         const prependedList: MasterRound[] = [round(), ...props.master.gameRounds.val()];
         props.master.gameRounds.setVal(prependedList);
-        reset();
+        abort();
     }
 
     return <>
@@ -42,7 +43,7 @@ export const AddRounds = (props: Props) => {
         <Modal>
             <RoundForm isNew={true}
                 onSubmit={saveRound}
-                onReset={reset}
+                onAbort={abort}
                 value={[round, setRound]}
             />
         </Modal>

@@ -44,7 +44,10 @@ export const PeopleList = (props: PeopleListProps) => {
             </div>
         </Card>
         <Show when={!isEmptyString(props.containers.f1.name.val())}>
-            <Card remove={() => removeFriend("1")} >
+            <Card buttons={
+                <button class="btn btn-error btn-sm btn-block"
+                    onClick={() => removeFriend("1")}>Entfernen</button>
+            }  >
                 <div class="grid gap-2">
                     <span>
                         2: <strong>{props.containers.f1.name.val()}</strong>
@@ -55,7 +58,10 @@ export const PeopleList = (props: PeopleListProps) => {
             </Card>
         </Show>
         <Show when={!isEmptyString(props.containers.f2.name.val())}>
-            <Card remove={() => removeFriend("2")} >
+            <Card buttons={
+                <button class="btn btn-error btn-sm btn-block"
+                    onClick={() => removeFriend("2")}>Entfernen</button>
+            }   >
                 <div class="grid gap-2">
                     <span>
                         3: <strong>{props.containers.f2.name.val()}</strong>
