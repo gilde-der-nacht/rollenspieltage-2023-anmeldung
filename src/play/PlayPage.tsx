@@ -69,3 +69,5 @@ export const PlayPage = (props: Props) => {
         </div>
     </>
 }
+
+export const playIsDone = (): boolean => true

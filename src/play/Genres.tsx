@@ -11,7 +11,7 @@ type Props = {
 export const Genres = (props: Props) => {
     return <>
         <Heading title="Genres" description="Wähle aus, welche Genres du nicht gerne hast." />
-        <div class="flex gap-3 flex-wrap">
+        <div class="flex gap-3 flex-wrap mt-3">
             <For each={genres}>
                 {(genre) => {
                     const isActive = () =>
