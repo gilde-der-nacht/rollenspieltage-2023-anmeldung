@@ -1,5 +1,5 @@
 import { SetStoreFunction, Store } from "solid-js/store";
-import { ContactUser, Friend, PageLabel, Play, State, TimeWindow } from "../state";
+import { ContactUser, Friend, Master, PageLabel, Play, State, TimeWindow } from "../state";
 
 export type Container<T> = {
     val: () => Readonly<T>;
@@ -112,7 +112,14 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
         }
     }
 
-    return { cc, f1, f2, time, play }
+    const master: ComplexContainer<Master> = {
+        wantsToMaster: {
+            val: () => state.userInput.master.wantsToMaster,
+            setVal: (n) => setState('userInput', "master", "wantsToMaster", n)
+        },
+    }
+
+    return { cc, f1, f2, time, play, master }
 }
 
 export type AllContainers = ReturnType<typeof createContainers>;

@@ -38,7 +38,7 @@ const App = () => {
                 <PlayPage play={containers.play} />
               </Match>
               <Match when={state.currentPage === "Leiten"}>
-                <MasterPage />
+                <MasterPage master={containers.master} />
               </Match>
               <Match when={state.currentPage === "Zusammenfassung"}>
                 <SummaryPage />

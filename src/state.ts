@@ -60,12 +60,17 @@ export type Play = {
   genres: Readonly<Genre[]>;
 }
 
+export type Master = {
+  wantsToMaster: boolean;
+}
+
 export type UserInput = {
   contact: ContactUser;
   friend01: Friend;
   friend02: Friend;
   time: TimeWindow;
   play: Play;
+  master: Master;
 }
 
 export type State = {
@@ -124,8 +129,11 @@ export const store = () => createStore<State>({
       playLength: "Keine Angabe",
       genres: [],
     },
+    master: {
+      wantsToMaster: false,
+    }
   },
   initialized: true,
-  currentPage: "Spielen",
+  currentPage: "Leiten",
 })
 
