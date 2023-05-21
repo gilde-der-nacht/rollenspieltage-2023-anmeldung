@@ -70,6 +70,7 @@ export type MasterRound = {
   duration: MasterRoundDuration;
   minPlayer: number;
   maxPlayer: number;
+  genres: Readonly<Genre[]>;
 }
 
 export type Master = {

@@ -1,6 +1,6 @@
 import { For, Show, Signal, createSignal } from "solid-js";
 import { Heading } from "../form/Heading";
-import { MasterRound, MasterRoundDuration, masterRoundDuration } from "../state"
+import { Genre, MasterRound, MasterRoundDuration, masterRoundDuration } from "../state"
 import { TextInput } from "../form/TextInput";
 import { Container, isEmptyString } from "../form/Values";
 import { RadioButton } from "../form/RadioButton";
@@ -8,6 +8,7 @@ import { NumberInput } from "../form/NumberInput";
 import { Button } from "../common/Button";
 import { parseTimeString } from "../time/timeUtil";
 import { Alert } from "../common/Alert";
+import { GenrePicker } from "../common/GenrePicker";
 
 type Props = {
     value: Signal<MasterRound>;
@@ -47,6 +48,11 @@ export const RoundForm = (props: Props) => {
         setVal: (n) => setRound((prev) => ({ ...prev, maxPlayer: n }))
     };
 
+    const genres: Container<Genre[]> = {
+        val: () => round().genres,
+        setVal: (n) => setRound((prev) => ({ ...prev, genres: n }))
+    }
+
     const errors = () => {
         const e = [];
         if (isEmptyString(title.val())) {
@@ -63,6 +69,9 @@ export const RoundForm = (props: Props) => {
         }
         if (minPlayer.val() > maxPlayer.val()) {
             e.push("Spieleranzahl: Das Minimum darf nicht grösser sein als das Maximum.")
+        }
+        if (genres.val().length === 0) {
+            e.push("Wähle mindestens ein Genre aus.")
         }
         return e;
     }
@@ -110,6 +119,14 @@ export const RoundForm = (props: Props) => {
         </div>
         <NumberInput label="Spieleranzahl Minimum" value={minPlayer} />
         <NumberInput label="Spieleranzahl Maximum" value={maxPlayer} />
+        <label class="label">
+            <strong>
+                <span class="label-text">Genres</span>
+            </strong>
+        </label>
+        <div class="mb-3">
+            <GenrePicker active={genres} />
+        </div>
         <Show when={validate() && errors().length > 0}>
             <div class="mb-3">
                 <Alert kind="error" text={errors().join(" ")} />
