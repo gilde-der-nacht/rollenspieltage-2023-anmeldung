@@ -1,7 +1,7 @@
 import { Checkbox } from "../form/Checkbox"
 import { Heading } from "../form/Heading"
 import { ComplexContainer } from "../form/Values";
-import { Master } from "../state";
+import { Master, UserInput } from "../state";
 import { RoundsList } from "./RoundsList";
 
 type Props = {
@@ -20,4 +20,14 @@ export const MasterPage = (props: Props) => {
         </div>
         <RoundsList master={props.master} />
     </>
+}
+
+export const masterIsDone = (userInput: UserInput): boolean => {
+    if (!userInput.master.wantsToMaster) {
+        return true;
+    }
+    if (userInput.master.gameRounds.length > 0) {
+        return true;
+    }
+    return false;
 }

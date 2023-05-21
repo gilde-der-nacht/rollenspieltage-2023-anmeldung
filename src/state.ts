@@ -2,6 +2,7 @@ import { createStore } from "solid-js/store";
 import { startIsDone } from "./start/StartPage";
 import { timeIsDone } from "./time/TimePage";
 import { playIsDone } from "./play/PlayPage";
+import { masterIsDone } from "./master/MasterPage";
 
 export const pages = ["Start", "Zeit", "Spielen", "Leiten", "Zusammenfassung"] as const;
 export type PageLabel = typeof pages[number];
@@ -101,7 +102,7 @@ export const store = () => createStore<State>({
     { label: "Start", done: startIsDone },
     { label: "Zeit", done: timeIsDone },
     { label: "Spielen", done: playIsDone },
-    { label: "Leiten", done: () => false },
+    { label: "Leiten", done: masterIsDone },
     { label: "Zusammenfassung", done: () => false },
   ],
   userInput: {
