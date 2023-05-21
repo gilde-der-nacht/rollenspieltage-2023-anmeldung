@@ -1,11 +1,13 @@
-import { For, Signal } from "solid-js";
+import { For, Show, Signal, createSignal } from "solid-js";
 import { Heading } from "../form/Heading";
 import { MasterRound, MasterRoundDuration, masterRoundDuration } from "../state"
 import { TextInput } from "../form/TextInput";
-import { Container } from "../form/Values";
+import { Container, isEmptyString } from "../form/Values";
 import { RadioButton } from "../form/RadioButton";
 import { NumberInput } from "../form/NumberInput";
 import { Button } from "../common/Button";
+import { parseTimeString } from "../time/timeUtil";
+import { Alert } from "../common/Alert";
 
 type Props = {
     value: Signal<MasterRound>;
@@ -14,6 +16,7 @@ type Props = {
     onReset: () => void;
 }
 
+const [validate, setValidate] = createSignal(false);
 
 export const RoundForm = (props: Props) => {
     const [round, setRound] = props.value;
@@ -43,6 +46,35 @@ export const RoundForm = (props: Props) => {
         setVal: (n) => setRound((prev) => ({ ...prev, maxPlayer: n }))
     };
 
+    const errors = () => {
+        const e = [];
+        if (isEmptyString(title.val())) {
+            e.push("Titel ist ein Pflichtfeld.");
+        }
+        if (isEmptyString(system.val())) {
+            e.push("System ist ein Pflichtfeld.");
+        }
+        if (isNaN(minPlayer.val()) || minPlayer.val() < 1) {
+            e.push("'Spieleranzahl Minimum' ist eine ungültige Zahl.")
+        }
+        if (isNaN(maxPlayer.val())) {
+            e.push("'Spieleranzahl Maximum' ist eine ungültige Zahl.")
+        }
+        if (minPlayer.val() > maxPlayer.val()) {
+            e.push("Spieleranzahl: Das Minimum darf nicht grösser sein als das Maximum.")
+        }
+        return e;
+    }
+
+
+    const submit = () => {
+        setValidate(true);
+        const e = errors();
+        if (e.length === 0) {
+            props.onSubmit();
+        }
+    }
+
     return <form>
         <Heading title={props.isNew ? "Spielrunde erstellen" : "Spielrunde editieren"} />
         <TextInput label="Titel" value={title} />
@@ -65,9 +97,12 @@ export const RoundForm = (props: Props) => {
         </div>
         <NumberInput label="Spieleranzahl Minimum" value={minPlayer} />
         <NumberInput label="Spieleranzahl Maximum" value={maxPlayer} />
+        <Show when={validate() && errors().length > 0}>
+            <Alert kind="error" text={errors().join(" ")} />
+        </Show>
         <div class="flex gap-3 flex-wrap">
             <Button onClick={(e) => { e.preventDefault(); props.onReset() }} secondary={true}>Abbrechen</Button>
-            <Button onClick={(e) => { e.preventDefault(); props.onSubmit() }}>{props.isNew ? "Erstellen" : "Speichern"}</Button>
+            <Button onClick={(e) => { e.preventDefault(); submit() }}>{props.isNew ? "Erstellen" : "Speichern"}</Button>
         </div>
     </form>
 }

@@ -1,3 +1,4 @@
+import { parseTimeString } from "../time/timeUtil";
 import { Container, isEmptyString } from "./Values";
 
 export type InputProps = {
@@ -15,12 +16,14 @@ export const NumberInput = (props: InputProps) => {
             </strong>
         </label>
         <input
-            type="text"
+            type="number"
             placeholder=""
             class="input input-bordered"
             required={props.required}
             value={props.value.val()}
-            onInput={(e) => props.value.setVal(Number.parseInt((e.target as HTMLInputElement).value))} />
+            onInput={(e) => {
+                props.value.setVal(Number.parseInt((e.target as HTMLInputElement).value))
+            }} />
         {
             !isEmptyString(props.hint) && (
                 <label class="label">

@@ -18,7 +18,9 @@ export const useModal = (id: string) => {
     }
 
     const closeModal = () => {
-        (document.getElementById(id) as HTMLInputElement).checked = false;
+        if (id !== "") {
+            (document.getElementById(id) as HTMLInputElement).checked = false;
+        }
     }
 
     return { ModalButton, Modal, closeModal }
