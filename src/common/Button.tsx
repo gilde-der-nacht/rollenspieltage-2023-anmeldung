@@ -4,6 +4,7 @@ export type ButtonProps = {
     square?: boolean;
     onClick: (e?: Event) => void;
     children: JSXElement;
+    secondary?: boolean;
 }
 
 export const Button = (props: ButtonProps): JSXElement => {
@@ -11,6 +12,9 @@ export const Button = (props: ButtonProps): JSXElement => {
         const c = ["btn", "btn-primary"]
         if (props.square) {
             c.push("btn-square")
+        }
+        if (props.secondary) {
+            c.push("btn-outline");
         }
         return c.join(" ")
     }

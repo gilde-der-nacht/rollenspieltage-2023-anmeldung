@@ -60,8 +60,20 @@ export type Play = {
   genres: Readonly<Genre[]>;
 }
 
+export const masterRoundDuration = [2, 4] as const;
+export type MasterRoundDuration = typeof masterRoundDuration[number];
+
+export type MasterRound = {
+  title: string;
+  system: string;
+  duration: MasterRoundDuration;
+  minPlayer: number;
+  maxPlayer: number;
+}
+
 export type Master = {
   wantsToMaster: boolean;
+  gameRounds: Readonly<MasterRound[]>;
 }
 
 export type UserInput = {
@@ -131,6 +143,7 @@ export const store = () => createStore<State>({
     },
     master: {
       wantsToMaster: false,
+      gameRounds: [],
     }
   },
   initialized: true,

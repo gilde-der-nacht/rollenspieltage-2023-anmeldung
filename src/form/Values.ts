@@ -117,6 +117,10 @@ export const createContainers = (state: Store<State>, setState: SetStoreFunction
             val: () => state.userInput.master.wantsToMaster,
             setVal: (n) => setState('userInput', "master", "wantsToMaster", n)
         },
+        gameRounds: {
+            val: () => state.userInput.master.gameRounds,
+            setVal: (n) => setState('userInput', "master", "gameRounds", n)
+        }
     }
 
     return { cc, f1, f2, time, play, master }
