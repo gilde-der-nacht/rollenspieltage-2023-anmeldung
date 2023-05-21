@@ -1,5 +1,5 @@
 import { Heading } from "../form/Heading"
-import { AllContainers } from "../form/Values"
+import { AllContainers, isEmptyString } from "../form/Values"
 import { TwoColumns } from "../layout/TwoColumns"
 import { UserInput } from "../state"
 import { DayAvailability } from "./DayAvailability"
@@ -35,7 +35,15 @@ export const TimePage = (props: Props) => {
 }
 
 export const timeIsDone = (userInput: UserInput): boolean => {
-    if (userInput.contact.saturday || userInput.friend01.saturday || userInput.friend02.saturday) {
+    if (!userInput.contact.saturday && !userInput.contact.sunday) {
+        return false;
+    }
+
+    if (userInput.contact.saturday ||
+        (!isEmptyString(userInput.friend01.name) &&
+            userInput.friend01.saturday) ||
+        (!isEmptyString(userInput.friend02.name) &&
+            userInput.friend02.saturday)) {
         if (userInput.time.Samstag.start === "Startzeit wählen" || userInput.time.Samstag.end === "Endzeit wählen") {
             return false;
         }
@@ -46,7 +54,12 @@ export const timeIsDone = (userInput: UserInput): boolean => {
         } catch (_) {
         }
     }
-    if (userInput.contact.sunday || userInput.friend01.sunday || userInput.friend02.sunday) {
+
+    if (userInput.contact.sunday ||
+        (!isEmptyString(userInput.friend01.name) &&
+            userInput.friend01.sunday) ||
+        (!isEmptyString(userInput.friend02.name) &&
+            userInput.friend02.sunday)) {
         if (userInput.time.Sonntag.start === "Startzeit wählen" || userInput.time.Sonntag.end === "Endzeit wählen") {
             return false;
         }
@@ -57,5 +70,6 @@ export const timeIsDone = (userInput: UserInput): boolean => {
         } catch (_) {
         }
     }
+
     return true
 }
