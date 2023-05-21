@@ -103,7 +103,11 @@ export const RoundForm = (props: Props) => {
         <TextInput label="System" value={system} />
         <label class="label">
             <strong>
-                <span class="label-text">Dauer</span>
+                <span class="label-text">Dauer
+                    <div class="tooltip tooltip-right" data-tip="ca. 35% der Teilnehmer bevorzugen kurze Runden; ca. 33% lange Runden.">
+                        <span class="ml-2"> (?)</span>
+                    </div>
+                </span>
             </strong>
         </label>
         <div class="flex gap-3 flex-wrap">
@@ -121,7 +125,11 @@ export const RoundForm = (props: Props) => {
         <NumberInput label="Spieleranzahl Maximum" value={maxPlayer} />
         <label class="label">
             <strong>
-                <span class="label-text">Genres</span>
+                <span class="label-text">Genres
+                    <div class="tooltip tooltip-right" data-tip="Teilnehmer mögen: Fantasy (40%), Modern (34%), etc.">
+                        <span class="ml-2"> (?)</span>
+                    </div>
+                </span>
             </strong>
         </label>
         <div class="mb-3">
