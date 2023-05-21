@@ -1,3 +1,4 @@
+import { Alert } from "../common/Alert"
 import { AllContainers, isEmptyString, } from "../form/Values"
 import { WithSidebar } from "../layout/WithSidebar"
 import { UserInput } from "../state"
@@ -11,10 +12,15 @@ type Props = {
 export const StartPage = (props: Props) => {
     return <>
         <WithSidebar main={
-            <ContactPerson contact={props.containers.cc} />
+            <>
+                <ContactPerson contact={props.containers.cc} />
+            </>
         } side={
             <PeopleList containers={props.containers} />
         } />
+        <div class="mt-6">
+            <Alert kind="info" text="Die Kontaktdaten werden ausschliesslich verwendet, um dir die notwendigen Informationen zu den Luzerner Rollenspieltage 2023 zu senden. Möchtest du gerne darüber hinaus über Spielevents von uns informiert werden, dann trage dich am besten für unseren Newsletter ein: https://rollenspieltage.ch/newsletter/" />
+        </div>
     </>
 }
 

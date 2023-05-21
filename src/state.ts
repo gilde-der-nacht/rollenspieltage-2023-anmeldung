@@ -45,11 +45,26 @@ export type TimeWindow = {
   };
 } & { eating: Eating }
 
+export const playLength = [
+  "Ich bevorzuge kürzere Spielrunden (2 Stunden).", "Keine Angabe", "Ich bevorzuge längere Spielrunden (4 Stunden)."
+] as const;
+export type PlayLength = typeof playLength[number];
+
+export const genres = ["Fantasy", "Science Fiction", "Horror", "Krimi", "Modern"] as const;
+export type Genre = typeof genres[number];
+
+export type Play = {
+  wantsToPlay: boolean;
+  playLength: PlayLength;
+  genres: Readonly<Genre[]>;
+}
+
 export type UserInput = {
   contact: ContactUser;
   friend01: Friend;
   friend02: Friend;
   time: TimeWindow;
+  play: Play;
 }
 
 export type State = {
@@ -102,9 +117,14 @@ export const store = () => createStore<State>({
         end: "Endzeit wählen",
       },
       eating: "Keine Angabe"
-    }
+    },
+    play: {
+      wantsToPlay: true,
+      playLength: "Keine Angabe",
+      genres: [],
+    },
   },
   initialized: true,
-  currentPage: "Zeit",
+  currentPage: "Spielen",
 })
 

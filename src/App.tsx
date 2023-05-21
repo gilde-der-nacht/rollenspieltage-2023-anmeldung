@@ -35,7 +35,7 @@ const App = () => {
                 <TimePage containers={containers} />
               </Match>
               <Match when={state.currentPage === "Spielen"}>
-                <PlayPage />
+                <PlayPage play={containers.play} />
               </Match>
               <Match when={state.currentPage === "Leiten"}>
                 <MasterPage />
