@@ -41,7 +41,7 @@ export const PlayPage = (props: Props) => {
             <div>
                 <label class="label my-3">
                     <strong>
-                        <span class="label-text">Hier siehst du ein Übersicht, über die bisher angemeldeten Spielrunden. </span>
+                        <span class="label-text">Schätzung der zur Verfügung stehenden Spielrunden.</span>
                     </strong>
                 </label>
                 <div class="overflow-x-auto">
