@@ -1,6 +1,6 @@
 import { For, Show, Signal, createSignal } from "solid-js";
 import { Heading } from "../form/Heading";
-import { Genre, MasterRound, MasterRoundDuration, masterRoundDuration } from "../state"
+import { AgeGroup, Genre, MasterRound, MasterRoundDuration, masterRoundDuration } from "../state"
 import { TextInput } from "../form/TextInput";
 import { Container, isEmptyString } from "../form/Values";
 import { RadioButton } from "../form/RadioButton";
@@ -9,6 +9,7 @@ import { Button } from "../common/Button";
 import { parseTimeString } from "../time/timeUtil";
 import { Alert } from "../common/Alert";
 import { GenrePicker } from "../common/GenrePicker";
+import { AgePicker } from "../common/AgePicker";
 
 type Props = {
     value: Signal<MasterRound>;
@@ -53,6 +54,11 @@ export const RoundForm = (props: Props) => {
         setVal: (n) => setRound((prev) => ({ ...prev, genres: n }))
     }
 
+    const ages: Container<AgeGroup[]> = {
+        val: () => round().ages,
+        setVal: (n) => setRound((prev) => ({ ...prev, ages: n }))
+    }
+
     const errors = () => {
         const e = [];
         if (isEmptyString(title.val())) {
@@ -72,6 +78,9 @@ export const RoundForm = (props: Props) => {
         }
         if (genres.val().length === 0) {
             e.push("Wähle mindestens ein Genre aus.")
+        }
+        if (ages.val().length === 0) {
+            e.push("Wähle mindestens eine Altersgruppe aus.")
         }
         return e;
     }
@@ -134,6 +143,18 @@ export const RoundForm = (props: Props) => {
         </label>
         <div class="mb-3">
             <GenrePicker active={genres} />
+        </div>
+        <label class="label">
+            <strong>
+                <span class="label-text">Wähle die passenden Altersgruppen
+                    <div class="tooltip tooltip-right" data-tip="Teilnehmer sind: 10-16 (33%), etc.">
+                        <span class="ml-2"> (?)</span>
+                    </div>
+                </span>
+            </strong>
+        </label>
+        <div class="mb-3">
+            <AgePicker active={ages} />
         </div>
         <Show when={validate() && errors().length > 0}>
             <div class="mb-3">

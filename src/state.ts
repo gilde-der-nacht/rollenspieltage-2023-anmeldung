@@ -71,6 +71,7 @@ export type MasterRound = {
   duration: MasterRoundDuration;
   minPlayer: number;
   maxPlayer: number;
+  ages: Readonly<AgeGroup[]>;
   genres: Readonly<Genre[]>;
 }
 
@@ -150,6 +151,6 @@ export const store = () => createStore<State>({
     }
   },
   initialized: true,
-  currentPage: "Leiten",
+  currentPage: "Zusammenfassung",
 })
 

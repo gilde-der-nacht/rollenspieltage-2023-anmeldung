@@ -16,6 +16,7 @@ const getDefaultRound = (): MasterRound => ({
     minPlayer: 2,
     maxPlayer: 4,
     genres: [],
+    ages: [],
 })
 
 const [round, setRound] = createSignal<MasterRound>(getDefaultRound());

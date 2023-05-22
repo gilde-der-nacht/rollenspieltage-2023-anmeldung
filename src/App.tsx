@@ -1,4 +1,4 @@
-import { Match, Switch } from "solid-js";
+import { Match, Show, Switch } from "solid-js";
 import { Nav } from "./Nav";
 import { store } from "./state";
 import { StartPage } from "./start/StartPage";
@@ -20,8 +20,10 @@ const App = () => {
   return (
     <>
       <div class="xWrapper">
-        <h1 class="text-4xl font-bold">Luzerner Rollenspieltage 2023</h1>
-        <h2 class="text-3xl">Anmeldung</h2>
+        <Show when={state.initialized}>
+          <h1 class="text-4xl font-bold">Luzerner Rollenspieltage 2023</h1>
+          <h2 class="text-3xl">Anmeldung</h2>
+        </Show>
         <Switch fallback={
           <Initial contact={containers.cc} triggerEvent={triggerEvent} />
         }>
@@ -41,7 +43,7 @@ const App = () => {
                 <MasterPage master={containers.master} />
               </Match>
               <Match when={state.currentPage === "Zusammenfassung"}>
-                <SummaryPage />
+                <SummaryPage containers={containers} />
               </Match>
             </Switch>
             <Footer pages={state.pages} triggerEvent={triggerEvent} activePage={state.currentPage} />
