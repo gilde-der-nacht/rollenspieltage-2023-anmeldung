@@ -6,10 +6,14 @@ import { Alert } from "../common/Alert";
 import { ContactUser, Master, TimeWindow } from "../state";
 import { rangeIsValid } from "../time/timeUtil";
 import { TwoColumns } from "../layout/TwoColumns";
+import { Button } from "../common/Button";
+import { useModal } from "../common/Modal";
 
 type Props = {
     containers: AllContainers;
 }
+
+const { Modal, ModalButton, closeModal } = useModal("final");
 
 export const SummaryPage = (props: Props) => {
     return <div class="grid gap-6">
@@ -115,6 +119,19 @@ export const SummaryPage = (props: Props) => {
                 </ul>
             </div>
         </Show>
+        <Show when={!hasErrors(props.containers)} fallback={
+            <Button secondary={true} onClick={() => { }}>Abschliessen noch nicht möglich</Button>
+        }>
+            <ModalButton>Abschliessen</ModalButton>
+        </Show>
+        <Modal>
+            <div class="prose">
+                <h2>Gratuliere, Anmeldung abgeschlossen!</h2>
+                <p>Solange die Anmeldung noch offen ist, kannst du deine Daten unter <strong>www.someurl.com/deineId</strong> weiterhin bearbeiten.</p>
+                <Button onClick={closeModal}>Verstanden</Button>
+            </div>
+        </Modal>
+
     </div>
 }
 
@@ -154,4 +171,13 @@ const gameRoundsAreMissing = (master: ComplexContainer<Master>): boolean => {
         return false;
     }
     return master.gameRounds.val().length === 0;
+}
+
+const hasErrors = (containers: AllContainers): boolean => {
+    return gameRoundsAreMissing(containers.master)
+        || timeIsMissingSa(containers.cc, containers.time)
+        || timeIsMissingSo(containers.cc, containers.time)
+        || noDayIsSelected(containers.cc)
+        || nameOrMailMissing(containers.cc);
+
 }
