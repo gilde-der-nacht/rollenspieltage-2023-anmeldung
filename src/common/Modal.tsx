@@ -3,7 +3,7 @@ import { JSXElement } from "solid-js"
 
 export const useModal = (id: string) => {
     const ModalButton = (props: { children: JSXElement }) => {
-        return <label for={id} class="btn">{props.children}</label>
+        return <label for={id} class="btn btn-success">{props.children}</label>
     }
 
     const Modal = (props: { children: JSXElement }) => {

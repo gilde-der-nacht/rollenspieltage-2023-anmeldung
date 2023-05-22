@@ -108,8 +108,8 @@ export const store = () => createStore<State>({
   ],
   userInput: {
     contact: {
-      name: "Hans Muster",
-      mail: "mail@muster.hans",
+      name: "",
+      mail: "",
       phone: "",
       saturday: true,
       sunday: true,
@@ -150,7 +150,7 @@ export const store = () => createStore<State>({
       gameRounds: [],
     }
   },
-  initialized: true,
-  currentPage: "Zusammenfassung",
+  initialized: false,
+  currentPage: "Start",
 })
 

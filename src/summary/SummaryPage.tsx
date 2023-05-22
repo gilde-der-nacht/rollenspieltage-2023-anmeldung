@@ -131,7 +131,6 @@ export const SummaryPage = (props: Props) => {
                 <Button onClick={closeModal}>Verstanden</Button>
             </div>
         </Modal>
-
     </div>
 }
 
